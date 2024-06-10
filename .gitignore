@@ -1,0 +1,6 @@
+target
+.env*
+!.env.example
+*.bonsaidb
+.idea/
+

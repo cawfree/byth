@@ -1,0 +1,9 @@
+[submodule "fixtures/lib/forge-std"]
+	path = fixtures/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "fixtures/lib/halmos-cheatcodes"]
+	path = fixtures/lib/halmos-cheatcodes
+	url = https://github.com/a16z/halmos-cheatcodes
+[submodule "fixtures/lib/openzeppelin-contracts"]
+	path = fixtures/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
