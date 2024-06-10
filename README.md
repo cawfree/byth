@@ -4,7 +4,7 @@
 
 [**Byth**](https://github.com/cawfree/byth) is an EVM indexer which uses [`halmos`](https://github.com/a16z/halmos) to formally verify bytecode using detectors written in [__Solidity__](https://github.com/ethereum/solidity). It helps you to **discover vulnerable contracts** using **customizable detectors**.
 
-Check out [**this detector**](https://github.com/cawfree/byth/blob/8c352252e668c7dcfb79f2427391f71a97f07371/fixtures/test/Fixtures.t.sol#L36) for the [ThirdWeb](https://blog.thirdweb.com/vulnerability-report/) vulnerability!
+Check out [**this detector**](https://github.com/cawfree/byth/blob/c5c01fdc0444a7070052881ef9e93b1061602288/fixtures/test/Fixtures.t.sol#L36C5-L65C6) for the [ThirdWeb](https://blog.thirdweb.com/vulnerability-report/) vulnerability!
 
 > [!IMPORTANT]
 > Byth is experimental! Use at your own risk.
