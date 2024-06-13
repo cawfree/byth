@@ -78,7 +78,7 @@ Then you can start discovering vulnerabilities!
 ```shell
 cargo run observe \
   --rpc-url $ETH_RPC_URL \
-  --project custom_detector_project \ # your_project_name
+  --project ../custom_detector_project \ # your_project_name
   --debug \
   --block-number $ETH_BLOCK_NUMBER
 ```
