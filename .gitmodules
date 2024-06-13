@@ -7,3 +7,18 @@
 [submodule "fixtures/lib/openzeppelin-contracts"]
 	path = fixtures/lib/openzeppelin-contracts
 	url = https://github.com/openzeppelin/openzeppelin-contracts
+[submodule "bindings/bindings/lib/forge-std"]
+	path = bindings/bindings/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "bindings/lib/forge-std"]
+	path = bindings/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "default_detectors/lib/forge-std"]
+	path = default_detectors/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "default_detectors/lib/halmos-cheatcodes"]
+	path = default_detectors/lib/halmos-cheatcodes
+	url = https://github.com/a16z/halmos-cheatcodes
+[submodule "default_detectors/lib/openzeppelin-contracts"]
+	path = default_detectors/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts

@@ -1,2 +1,0 @@
-@halmos-cheatcodes/=lib/halmos-cheatcodes/src/
-@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/

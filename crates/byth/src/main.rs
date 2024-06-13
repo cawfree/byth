@@ -5,6 +5,7 @@ mod cli;
 mod db;
 mod ethereum;
 mod foundry;
+mod internals;
 mod observe;
 
 #[derive(Parser)]
