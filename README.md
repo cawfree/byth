@@ -59,7 +59,7 @@ contract MyCustomDetector is Test, SymTest, BythTest {
     ///         via the `_createBythHook()` call, so you don't want to
     ///         do this frequently.
     function setUp() public {
-        _hook = _createBythHook() /* initalize_contract_under_test*/;
+        _hook = _createBythHook() /* initalize_contract_under_test */;
     }
 
     /// @notice Then write your symbolic detectors! The convention is if your
