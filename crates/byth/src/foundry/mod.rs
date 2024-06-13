@@ -10,7 +10,8 @@ use std::process::Command;
 
 use walkdir::WalkDir;
 
-static PATTERN_BYTH_BYTECODE_TARGET: &str = "abi.encode(uint256(keccak256(\"byth.bytecode.target\")) - 1)";
+//static PATTERN_BYTH_BYTECODE_TARGET: &str = "abi.encode(uint256(keccak256(\"byth.bytecode.target\")) - 1)";
+static PATTERN_BYTH_BYTECODE: &str = "_createBythHook()";
 
 #[derive(Clone)]
 pub struct FoundryProject {
@@ -193,7 +194,7 @@ impl FoundryProject {
                     None => false,
                 })
                 .filter(|f| {
-                    Regex::new(&escape(PATTERN_BYTH_BYTECODE_TARGET))
+                    Regex::new(&escape(PATTERN_BYTH_BYTECODE))
                         .unwrap()
                         .is_match(
                             &std::fs::read_to_string(f.path())
@@ -231,11 +232,11 @@ impl FoundryProject {
             let orig = std::fs::read_to_string(src).unwrap();
 
             // Replace the content.
-            let d = Regex::new(&escape(PATTERN_BYTH_BYTECODE_TARGET))
+            let d = Regex::new(&escape(PATTERN_BYTH_BYTECODE))
                 .unwrap()
                 .replace_all(
                     &orig,
-                    format!("hex\"{}\"", byth_bytecode_target.clone())
+                    format!("_deployRawBytecode(hex\"{}\")", byth_bytecode_target.clone())
                 );
 
             fs_extra::file::write_all(dst, &d).unwrap();
@@ -340,8 +341,12 @@ mod tests {
     #[test]
     fn test_build() {
 
+        crate::internals::ensure_bindings_exists_in_tmpdir(
+            env::current_dir().expect("Failed to get current directory").join("..").join("..").join("bindings")
+        );
+
         let project = FoundryProject::new(
-            env::current_dir().expect("Failed to get current directory").join("..").join("..").join("fixtures")
+            env::current_dir().expect("Failed to get current directory").join("..").join("..").join("detectors_default")
         );
 
         assert_eq!(project.modifiable, false);
@@ -373,10 +378,12 @@ mod tests {
 
         /* relative_paths_expect */
         assert_eq!(paths.len(), 1);
-        assert_eq!(paths[0], "test/Fixtures.t.sol");
+        assert_eq!(paths[0], "test/Detectors.t.sol");
 
         /* Inject susceptible bytecode. */
         &project_fork.inject(paths, "608060405234801561001057600080fd5b506101eb806100206000396000f3fe60806040526004361061001e5760003560e01c8063be6002c214610023575b600080fd5b6100366100313660046100c6565b61004c565b6040516100439190610157565b60405180910390f35b6060600080856001600160a01b031634868660405161006c9291906101a5565b60006040518083038185875af1925050503d80600081146100a9576040519150601f19603f3d011682016040523d82523d6000602084013e6100ae565b606091505b5091509150816100bd57600080fd5b95945050505050565b6000806000604084860312156100db57600080fd5b83356001600160a01b03811681146100f257600080fd5b9250602084013567ffffffffffffffff8082111561010f57600080fd5b818601915086601f83011261012357600080fd5b81358181111561013257600080fd5b87602082850101111561014457600080fd5b6020830194508093505050509250925092565b600060208083528351808285015260005b8181101561018457858101830151858201604001528201610168565b506000604082860101526040601f19601f8301168501019250505092915050565b818382376000910190815291905056fea2646970667358221220ff5cdc74518316e84e4741242ed27ba80406824e3ca1cfa5470b9624f50d5ee564736f6c63430008140033".to_string());
+
+        println!(" before failed fork doing project in {:?}", project_fork.path);
 
         let results = &project_fork.halmos("check".into()).expect("failed to halmos");
 

@@ -150,8 +150,12 @@ mod tests {
             .expect("Failed to fetch block.")
             .expect("Block did not exist.");
 
+        crate::internals::ensure_bindings_exists_in_tmpdir(
+            std::env::current_dir().expect("Failed to get current directory").join("..").join("..").join("bindings")
+        );
+
         let project = FoundryProject::new(
-            std::env::current_dir().expect("Failed to get current directory").join("..").join("..").join("fixtures")
+            std::env::current_dir().expect("Failed to get current directory").join("..").join("..").join("detectors_default")
         )
             .fork()
             .expect("Unable to fork fixture.");
