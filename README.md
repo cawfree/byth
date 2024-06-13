@@ -7,7 +7,7 @@
 > [!IMPORTANT]
 > Byth is experimental! Use at your own risk.
 
-## Launch
+## Configuration
 
 To compile and run this project, you'll need to install the [__Rust Toolchain__](https://www.rust-lang.org/tools/install):
 
@@ -27,7 +27,7 @@ Finally, install [__Halmos__](https://github.com/a16z/halmos):
 pip3 install halmos
 ```
 
-## Writing Your Own Detectors
+## Discovering Vulnerabilities
 
 You can plug in your own custom detector logic to Byth easily. Just install the [__Byth Bindings__](./bindings/) to your [__Foundry__](https://getfoundry.sh/) tests:
 
