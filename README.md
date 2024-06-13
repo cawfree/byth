@@ -38,7 +38,7 @@ forge install cawfree/byth --no-commit
 Then add the remapping:
 
 ```shell
-@byth/=byth/src/
+@byth/=byth/bindings/src/
 ```
 
 Finally, inherit from [`BythTest.sol`](./bindings/src/BythTest.sol):
