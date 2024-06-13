@@ -68,7 +68,7 @@ contract MyCustomDetector is Test, SymTest, BythTest {
     function check_stealTheMoney(bytes memory someSymbolicFunctionCall) public {
         assert(address(this).balance == 0);
         (bool success,) = _hook.call(someSymbolicFunctionCall);
-        vm.assume(success);
+        assert(success);
         assert(address(this).balance > 0);
     }
 
