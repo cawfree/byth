@@ -65,9 +65,11 @@ contract MyCustomDetector is Test, SymTest, BythTest {
     /// @notice Then write your symbolic detectors! The convention is if your
     ///         test passes, it is considered vulnerable. Failures or timeouts
     ///         are considered as immune to the detector vulnerability.
-    function check_stealTheMoney() public {
-        (bool weStoleTheMoney,) = _hook.call(abi.encodeSignature("stealTheMoney()"));
-        assert(weStoleTheMoney);
+    function check_stealTheMoney(bytes memory someSymbolicFunctionCall) public {
+        assert(address(this).balance == 0);
+        (bool success,) = _hook.call(someSymbolicFunctionCall);
+        vm.assume(success);
+        assert(address(this).balance > 0);
     }
 
 }
